@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Student Management System</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Student Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/students}">Student Management</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class ="container">
+  <div class = "row">
+    <h1> List Students </h1>
+  </div>
+
+          <form th:action="@{/students/search}" method="get">
+            <label for="studentName">Enter Student Name:</label>
+            <input type="text" id="studentName" name="studentName" placeholder="Student Name" required>
+            <button type="submit">Search</button>
+          </form>
+
+<!--          <div th:if="${foundStudent != null}">-->
+<!--            <h2>Student Found:</h2>-->
+<!--            <p th:text="${foundStudent.firstName}"></p>-->
+<!--            <p th:text="${foundStudent.lastName}"></p>-->
+<!--            <p th:text="${foundStudent.enrollmentDate}"></p>-->
+<!--          </div>-->
+
+          <table class = "table table-striped table-bordered">
+            <thead class = "table-dark">
+            <tr>
+              <th> Student First Name</th>
+              <th> Student Middle Name</th>
+              <th> Student Last Name</th>
+              <th> Student Email </th>
+              <th> Student Number </th>
+              <th> Student Enrollment Date </th>
+              <th> Student Is International </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each = "foundStudent: ${foundStudent}">
+              <td th:text = "${foundStudent.firstName}"></td>
+              <td th:text = "${foundStudent.middleName}"></td>
+              <td th:text = "${foundStudent.lastName}"></td>
+              <td th:text = "${foundStudent.email}"></td>
+              <td th:text = "${foundStudent.studentNumber}"></td>
+              <td th:text = "${foundStudent.enrollmentDate}"></td>
+              <td th:text = "${foundStudent.isInternational}"></td>
+
+            </tr>
+            </tbody>
+
+          </table>
+</div>
+
+</body>
+</html>

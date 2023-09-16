@@ -4,13 +4,12 @@ import miu.swe.Assignment9.eRegistrar.entity.Student;
 import miu.swe.Assignment9.eRegistrar.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -28,6 +27,19 @@ public class StudentController {
     public String listStudents(Model model) {
         model.addAttribute("students", studentService.getAllStudents());
         return "students";
+    }
+    // handler method to handle list students and return mode and view
+    @GetMapping("/students/search")
+    public String searchStudents(@RequestParam(name = "studentName", required = false) String studentName, Model model) {
+        List<Student> foundStudent = studentService.getAllStudents().stream().filter(x->x.getFirstName().equals(studentName)).collect(Collectors.toList());;
+
+        if (studentName != null) {
+            //List<Student> result = studentService.getAllStudents().stream().filter(x->x.getFirstName().equals(studentName)).collect(Collectors.toList());
+//            if(result.size() > 0)
+//                foundStudent = result.get(0);
+                model.addAttribute("foundStudent", foundStudent);
+        }
+        return "search_student";
     }
 
     @GetMapping("/students/new")
