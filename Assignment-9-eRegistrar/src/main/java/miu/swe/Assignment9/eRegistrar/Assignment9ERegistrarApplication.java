@@ -1,6 +1,8 @@
 package miu.swe.Assignment9.eRegistrar;
 
+import miu.swe.Assignment9.eRegistrar.entity.Course;
 import miu.swe.Assignment9.eRegistrar.entity.Student;
+import miu.swe.Assignment9.eRegistrar.repository.CourseRepository;
 import miu.swe.Assignment9.eRegistrar.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,7 +18,8 @@ public class Assignment9ERegistrarApplication implements CommandLineRunner {
 	}
 	@Autowired
 	private StudentRepository studentRepository;
-
+	@Autowired
+	private CourseRepository courseRepository;
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -29,8 +32,8 @@ public class Assignment9ERegistrarApplication implements CommandLineRunner {
 //
 //		 Student student3 = new Student("tony", "stark", "tony@gmail.com");
 //		 studentRepository.save(student3);
-
-
+//		 Course c1 = new Course("ASD");
+//		 courseRepository.save(c1);
 	}
 
 }
