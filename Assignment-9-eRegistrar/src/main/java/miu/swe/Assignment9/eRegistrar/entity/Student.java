@@ -3,7 +3,7 @@ package miu.swe.Assignment9.eRegistrar.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 @Entity
 @Table(name = "students")
